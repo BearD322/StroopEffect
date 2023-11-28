@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="stroop effect, stroop test, тренировка внимательности, эффект струпа, тест струпа">
+    <title>Stroop Effects</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <p>Этот сайт разработан для тренировки концентрации с помощью <a href="https://ru.wikipedia.org/wiki/Эффект_Струпа">Эффекта Струпа</a></p> 
+        <p>Когда вы нажмете на кнопку начнут появлятся слова, <strong>цвет</strong> которых вы должны дать нажимая на цифры обозначающие конкретный цвет</p>
+        <p>(Для лучшего эффекта, проговаривайте <strong>цвет</strong> слова про себя)</p>
+        <div class="option">
+            <div class="option__gameMode">
+                <h3>Режим игры:</h3>
+                <span class="gameMode__endless gameModeBlue">Бесконечный</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <span class="gameMode__test">Тест</span>
+            </div>
+            <div class="option__wrapper">
+                <span>
+                    <input type="radio" name="option" id="easy" value="easy" checked>
+                    <label for="easy">Легко</label>
+                </span>
+                <span>
+                    <input type="radio" name="option" id="normal" value="normal">
+                    <label for="normal">Нормально</label>
+                </span>
+                <span>
+                    <input type="radio" name="option" id="hard" value="hard">
+                    <label for="hard">Тяжело</label>
+                </span>
+            </div>
+            
+            <table>
+                <tr class="option__colors">
+                    <td class="easy">Красный</td>
+                    <td class="easy">Синий</td>
+                    <td class="easy">Желтый</td>
+                    <td class="normal hidden">Зелёный</td>
+                    <td class="hard hidden">Фиолетовый</td>
+                </tr>
+                <tr class="option__buttons">
+                    <td class="easy">1</td>
+                    <td class="easy">2</td>
+                    <td class="easy">3</td>
+                    <td class="normal hidden">4</td>
+                    <td class="hard hidden">5</td>
+                </tr>
+            </table>
+        </div>
+        <button id="showButton" type="button" autofocus>Начать</button>
+    </header>
+    <div class="wrapper hidden">
+        <aside class="wrapper__sideBarLeft">
+            <div class="reklama_tipa"></div>
+            <div class="reklama_tipa"></div>
+        </aside>
+        <aside class="wrapper__counterSheet">
+            <div class="counterSheet__counter"></div>
+            <div class="counterSheet__timer"></div>
+        </aside>
+        <main class="wrapper__main">
+            <div class="colorWord">Lorem</div>
+            <div class="colorWord">ipsum</div>
+            <div class="colorWord">dolor</div>
+            <div class="colorWord">sit</div>
+            <div class="colorWord">amet</div>
+            <div class="colorWord">consectetur</div>
+            <div class="colorWord">adipisicing</div>
+            <div class="colorWord">elit</div>
+            <div class="colorWord">Possimus</div>
+        </main>
+        <aside class="wrapper__cheatSheet">
+        </aside>
+        <aside class="wrapper__sideBarRight">
+            <div class="leaderboard"></div>
+            <div class="leaderboard"></div>
+        </aside>
+        <aside class="wrapper__score hidden"></aside>
+    </div>
+    <hr class="hidden">
+    <footer class="hidden">
+        <p>Спасибо что пользуетесь моим сайтом, мои контакты:</p>
+        <div class="socialNetwork"><a href="https://vk.com/id315364700"><img src="Icons/vk.png" alt="Иконка ВК"></a></div>
+        <div class="socialNetwork"><a href="https://t.me/Shiv_offThe_East"><img src="Icons/telegram.png" alt="Иконка Телеграма"></a></div>
+        <div class="socialNetwork"><a href="https://github.com/BearD322"><img src="Icons/gitHub.png" alt="Иконка ГитХаба"></a></div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
