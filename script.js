@@ -3,26 +3,27 @@ let gameOption = {
     easy: 3, 
     normal: 4,
     hard: 5,
-    endless: true,
+    endless: false,
     stop: false,
     counter: 1,
     wrapperScore: document.querySelector(".wrapper__score"),
-};
+    audioCorrect: new Audio("sound/correct.wav"),
+    audioIncorrect: new Audio("sound/incorrect.wav"),
+    cheatSheetButtons: document.querySelector(".wrapper__cheatSheet").children,
+    };
 let headerOption = {
     radios: document.querySelectorAll("input[type='radio']"),
-    normalNode: document.querySelectorAll("td[class^='normal']"),
-    hardNode: document.querySelectorAll("td[class^='hard']"),
-    endlessMode: document.querySelector(".gameMode__endless"),
+    normalNode: document.querySelectorAll("div[class^='normal']"),
+    hardNode: document.querySelectorAll("div[class^='hard']"),
+    endlessMode: document.querySelector(".option__toggle"),
     testMode: document.querySelector(".gameMode__test"),
 };
 
 document.querySelector(".option__wrapper").addEventListener("click", switchOption);
-document.querySelector(".slider").addEventListener("click",switchGameMode);
+document.querySelector("#toggle").addEventListener("click",switchGameMode);
 
 function switchGameMode(){
-    gameOption.endless = false ? true : false;
-    headerOption.endlessMode.classList.toggle("gameModeBlue");
-    headerOption.testMode.classList.toggle("gameModeYellow");
+    gameOption.endless = gameOption.endless === false ? true : false;
 }
 
 function switchOption(){
@@ -56,12 +57,16 @@ document.querySelector("#showButton").onclick = start;
 function start(){
     let hidden = document.querySelectorAll('.hidden');
     for (let i = 0; i < hidden.length; i++) {
-        if (!(hidden[i].tagName === "TD") && !(hidden[i].classList.contains("wrapper__score"))) {
+        if (!(hidden[i].classList.contains("wrapper__score")) && !((hidden[i].classList.contains("green")) && (gameOption.difficulty == "easy")) && !(hidden[i].classList.contains("purple") && (gameOption.difficulty == "easy" || gameOption.difficulty == "normal"))) {
             hidden[i].classList.remove("hidden");
         }
     }
+    gameOption.audioCorrect.volume = 0.3
     document.querySelector('header').classList.add("hidden");
     game();
+    document.addEventListener("keyup", (event)=>{
+        gameOption.cheatSheetButtons[event.key - 1].classList.remove("active")
+    });// добавляем слушатель события keyUp сюда, чтобы он не добавлялся повторно через функцию retry
 }
 
 function retry(){
@@ -78,7 +83,7 @@ function game(){
     let timeSec1 = -1;
     let timeSec2 = 0;
     let timeMin = 0;
-    let counterSheet, timer, table;
+    let counterSheet, timer, optionCheatSheet;
     let CSSColors = {
         0: ["#880808","#800020","#D2042D"],
         1: ["#0000FF","#0096FF","#0047AB"],
@@ -88,7 +93,7 @@ function game(){
     };
     counterSheet = document.querySelector(".wrapper__counterSheet");
     words = document.querySelectorAll(".colorWord");
-    table = document.querySelector("table");
+    optionCheatSheet = document.querySelector(".option__cheatSheet");
 
     document.addEventListener(`keydown`, gameLoop);
     document.dispatchEvent(new KeyboardEvent("keydown", {
@@ -96,7 +101,6 @@ function game(){
         keyCode: 49, 
     }));
     timerLoop();
-    document.querySelector(".wrapper__cheatSheet").innerHTML = table.outerHTML;
 
     function timerLoop(){
         timeSec2 = timeSec1 == 9 ? timeSec2 + 1 : timeSec2;
@@ -124,7 +128,18 @@ function game(){
     
     function gameLoop(event){
         if (event.key >= 1 && event.key <= gameOption[gameOption.difficulty]) {
-            event.key == +randomCSSColors + 1 ? gameOption.counter++ : gameOption.counter--;
+            gameOption.cheatSheetButtons[event.key - 1].classList.add("active");
+            if (event.key == +randomCSSColors + 1) {
+                gameOption.counter++;
+                gameOption.audioCorrect.pause();
+                gameOption.audioCorrect.currentTime = 0;
+                gameOption.audioCorrect.play();
+            }else{
+                gameOption.counter--;
+                gameOption.audioIncorrect.pause();
+                gameOption.audioIncorrect.currentTime = 0;
+                gameOption.audioIncorrect.play();
+            }
             counterSheet.firstElementChild.innerHTML = gameOption.counter;
             if (gameOption.counter < -4 && !gameOption.endless) {
                 event.currentTarget.removeEventListener(`keydown`, gameLoop);

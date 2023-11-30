@@ -10,51 +10,50 @@
 </head>
 <body>
     <header>
-        <p>Этот сайт разработан для тренировки концентрации с помощью <a href="https://ru.wikipedia.org/wiki/Эффект_Струпа">Эффекта Струпа</a></p> 
-        <p>Когда вы нажмете на кнопку начнут появлятся слова, <strong>цвет</strong> которых вы должны дать нажимая на цифры обозначающие конкретный цвет</p>
-        <p>(Для лучшего эффекта, проговаривайте <strong>цвет</strong> слова про себя)</p>
+        <div class="header__info">
+            
+            <p>Игра "Stroop Effects"</p>
+            <p><a href="https://ru.wikipedia.org/wiki/Эффект_Струпа">Эффект Струпа</a> - это явление в психологии, когда восприятие цвета затруднено из-за несоответствия слова и цвета.</p>
+            
+            <p>Когда вы нажмете на кнопку начнут появлятся слова, <strong>цвет</strong> которых вы должны дать нажимая на цифры обозначающие конкретный цвет</p>
+            <p>(Для лучшего эффекта, проговаривайте <strong>цвет</strong> слова про себя)</p>
+        </div>
         <div class="option">
-            <div class="option__gameMode">
-                <h3>Режим игры:</h3>
-                <span class="gameMode__endless gameModeBlue">Бесконечный</span>
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-                <span class="gameMode__test">Тест</span>
+            <div class="option__toggle">
+                <input type="checkbox" id="toggle">
+                <label for="toggle">Режим без ограничений</label>
             </div>
             <div class="option__wrapper">
                 <span>
-                    <input type="radio" name="option" id="easy" value="easy" checked>
-                    <label for="easy">Легко</label>
+                    <input type="radio" name="option" id="easy" value="easy" checked="">
+                    <label for="easy" class="difficulty-button easy">Легко</label>
                 </span>
                 <span>
                     <input type="radio" name="option" id="normal" value="normal">
-                    <label for="normal">Нормально</label>
+                    <label for="normal" class="difficulty-button normal">Нормально</label>   
                 </span>
                 <span>
                     <input type="radio" name="option" id="hard" value="hard">
-                    <label for="hard">Тяжело</label>
+                    <label for="hard" class="difficulty-button hard">Тяжело</label>
                 </span>
             </div>
             
-            <table>
-                <tr class="option__colors">
-                    <td class="easy">Красный</td>
-                    <td class="easy">Синий</td>
-                    <td class="easy">Желтый</td>
-                    <td class="normal hidden">Зелёный</td>
-                    <td class="hard hidden">Фиолетовый</td>
-                </tr>
-                <tr class="option__buttons">
-                    <td class="easy">1</td>
-                    <td class="easy">2</td>
-                    <td class="easy">3</td>
-                    <td class="normal hidden">4</td>
-                    <td class="hard hidden">5</td>
-                </tr>
-            </table>
-        </div>
+            <div class="option__cheatSheet">
+                <div class="cheatSheet__colors">
+                    <div class="easy">Красный</div>
+                    <div class="easy">Синий</div>
+                    <div class="easy">Желтый</div>
+                    <div class="normal hidden">Зелёный</div>
+                    <div class="hard hidden">Фиолетовый</div>
+                </div>
+                <div class="cheatSheet__buttons">
+                    <div class="easy">1</div>
+                    <div class="easy">2</div>
+                    <div class="easy">3</div>
+                    <div class="normal hidden">4</div>
+                    <div class="hard hidden">5</div>
+                </div>
+            </div>
         <button id="showButton" type="button" autofocus>Начать</button>
     </header>
     <div class="wrapper hidden">
@@ -78,6 +77,26 @@
             <div class="colorWord">Possimus</div>
         </main>
         <aside class="wrapper__cheatSheet">
+            <div class="red">
+                <div class="easy">Красный</div>
+                <div class="easy">1</div>
+            </div>
+            <div class="blue">
+                <div class="easy">Синий</div>
+                <div class="easy">2</div>
+            </div>  
+            <div class="yellow">
+                <div class="easy">Желтый</div>
+                <div class="easy">3</div>
+            </div>
+            <div class="green hidden">
+                <div class="normal">Зелёный</div>
+                <div class="normal">4</div>
+            </div>
+            <div class="purple hidden">
+                <div class="hard">Фиолетовый</div>
+                <div class="hard">5</div>
+            </div>       
         </aside>
         <aside class="wrapper__sideBarRight">
             <div class="leaderboard"></div>

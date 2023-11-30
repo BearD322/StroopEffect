@@ -7,7 +7,7 @@
     width: 0;
   }
 a{
-    color: white;
+    color: #d8d8d8;
     text-decoration: none;
 }
 body{
@@ -20,14 +20,21 @@ body{
 /* header */
 
 header{
-    height: 500px;
+    min-height: 500px;
     width: 840px;
     margin: auto;
     text-align: center;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    justify-items: center;
     align-items: center;
     justify-content: space-evenly;
+}
+.header__info p {
+    margin: 0;
+    padding: 5px;
+    font-size: 20px;
+    color: #8c8c8c;
 }
 p>strong{
     background-color: #2AA5A0;
@@ -37,94 +44,69 @@ p>strong{
     -webkit-text-fill-color: transparent;
 }
 .option{
-    height: 250px;
     display: grid;
-    gap: 20px;
+    gap: 30px;
     justify-content: space-around;
+    justify-items: center
+}
+.option input{
+    display: none;
+}
+.option__toggle {
+    display: flex;
+    align-items: center;
+}
+.option__toggle label {
+    background-color: #555;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.option__toggle input:checked + label {
+    background-color: #417ad5;
+    box-shadow: 0 0 10px;
 }
 .option__wrapper{
     display: flex;
-    flex-direction: column;
-}
-.option__gameMode{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(2,1fr);
+    /* flex-direction: column; */
+    justify-content: space-between;
     align-items: center;
-    justify-items: center;
-    justify-self: center;
+    width: 370px;
 }
-.option__gameMode>h3{
-    grid-column: 1/4;
-}
-.gameModeBlue{
-    color: #63bedf;
-    text-shadow: 0 0 20px;
-}
-.gameModeYellow{
-    color: #dfd863;
-    text-shadow: 0 0 20px;
-}
-/* The slider */
-.switch input {
-    display:none;
-}
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #63bedf;
-  -webkit-transition: .4s;
-  transition: .4s;
+.difficulty-button {
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: #ffffff;
-  -webkit-transition: .4s;
-  transition: .4s;
+.difficulty-button.easy { background-color: #498b4b; }
+.difficulty-button.normal { background-color: #4081b6; }
+.difficulty-button.hard { background-color: #924e49; }
+.option__wrapper input:checked + label{
+    box-shadow: 0 0 20px;
 }
 
-input:checked + .slider {
-  background-color: #dfd863;
+
+.cheatSheet__colors{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
 }
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #dfd863;
+.cheatSheet__colors>div{
+    margin: 5px 5px;
+    width: 130px;
 }
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+.option__cheatSheet{
+    background-color: #2d333f9d;
+    border-radius: 5px;
 }
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-} 
-
-
-table td{
-    width: 120px;
+.cheatSheet__buttons{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
 }
 button{
     width: 200px;
@@ -138,7 +120,8 @@ button{
 }
 button:active {
     box-shadow: inset 5px 5px 10px #cee3f2, inset -5px -5px 10px #faffff;
-  }
+}
+
 
 /* main */
 
@@ -172,14 +155,32 @@ aside{
     grid-column: 9/10;
 }
 .wrapper__cheatSheet{
-    grid-column: 4/7;
+    grid-column: 3/8;
     grid-row: 11/12;
+    color: #d8d8d8;
+    background-color: #232529;
+    display: flex;
+    flex-direction: row;
+}
+.wrapper__cheatSheet>div{
+    background-color: #2a2f3b;
+    border-radius: 5px;
+    padding: 10px;
+    border: solid 1px #506596;
+}
+.wrapper__cheatSheet>div:active {
+    transform: scale(0.95);
+    animation: pulse 0.1s ;
+}
+.wrapper__cheatSheet>.active {
+    transform: scale(0.85);
 }
 .wrapper__counterSheet{
     grid-column: 5/6;
     grid-row: 1/2 ;
     justify-content: space-evenly;
     flex-direction: row;
+    border-radius: 5px;
 }
 .wrapper__main{
     grid-column:3/8;
