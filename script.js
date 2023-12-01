@@ -10,6 +10,7 @@ let gameOption = {
     audioCorrect: new Audio("sound/correct.wav"),
     audioIncorrect: new Audio("sound/incorrect.wav"),
     cheatSheetButtons: document.querySelector(".wrapper__cheatSheet").children,
+    cheatSheetButtonsArr: null,
     };
 let headerOption = {
     radios: document.querySelectorAll("input[type='radio']"),
@@ -67,6 +68,9 @@ function start(){
     document.addEventListener("keyup", (event)=>{
         gameOption.cheatSheetButtons[event.key - 1].classList.remove("active")
     });// добавляем слушатель события keyUp сюда, чтобы он не добавлялся повторно через функцию retry
+    document.addEventListener("mouseup", (event)=>{
+        event.target.parentElement.classList.remove("active")
+    })
 }
 
 function retry(){
@@ -83,6 +87,7 @@ function game(){
     let timeSec1 = -1;
     let timeSec2 = 0;
     let timeMin = 0;
+    gameOption.cheatSheetButtonsArr = Array.from(gameOption.cheatSheetButtons);
     let counterSheet, timer, optionCheatSheet;
     let CSSColors = {
         0: ["#880808","#800020","#D2042D"],
@@ -96,6 +101,8 @@ function game(){
     optionCheatSheet = document.querySelector(".option__cheatSheet");
 
     document.addEventListener(`keydown`, gameLoop);
+    gameOption.cheatSheetButtons[0].parentElement.addEventListener('mousedown',gameLoop);
+   
     
     counterSheet.firstElementChild.innerHTML = gameOption.counter;
     words.forEach(item => item.innerHTML= "");
@@ -136,9 +143,13 @@ function game(){
     }
     
     function gameLoop(event){
-        if (event.key >= 1 && event.key <= gameOption[gameOption.difficulty]) {
-            gameOption.cheatSheetButtons[event.key - 1].classList.add("active");
-            if (event.key == +randomCSSColors + 1) {
+        if ((event.key >= 1 && event.key <= gameOption[gameOption.difficulty]) || (gameOption.cheatSheetButtonsArr.includes(event.target.parentElement))) {
+            if (event.key === undefined) {
+                event.target.parentElement.classList.add("active");
+            }else{
+                gameOption.cheatSheetButtons[event.key - 1].classList.add("active");
+            }
+            if (event.key == +randomCSSColors + 1 || gameOption.cheatSheetButtonsArr.indexOf(event.target.parentElement) == +randomCSSColors) {
                 gameOption.counter++;
                 gameOption.audioCorrect.pause();
                 gameOption.audioCorrect.currentTime = 0;
