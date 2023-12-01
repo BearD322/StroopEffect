@@ -5,7 +5,7 @@ let gameOption = {
     hard: 5,
     endless: false,
     stop: false,
-    counter: 1,
+    counter: 0,
     wrapperScore: document.querySelector(".wrapper__score"),
     audioCorrect: new Audio("sound/correct.wav"),
     audioIncorrect: new Audio("sound/incorrect.wav"),
@@ -70,7 +70,7 @@ function start(){
 }
 
 function retry(){
-    gameOption.counter = 1;
+    gameOption.counter = 0;
     gameOption.stop = false;
     gameOption.wrapperScore.classList.add("hidden");
     game();
@@ -96,10 +96,19 @@ function game(){
     optionCheatSheet = document.querySelector(".option__cheatSheet");
 
     document.addEventListener(`keydown`, gameLoop);
-    document.dispatchEvent(new KeyboardEvent("keydown", {
-        key: 1,
-        keyCode: 49, 
-    }));
+    
+    counterSheet.firstElementChild.innerHTML = gameOption.counter;
+    words.forEach(item => item.innerHTML= "");
+    words.forEach(item => item.style.color = "");
+
+    randomWords = Math.floor(Math.random() * 9);
+    randomColors = Math.floor(Math.random() * gameOption[gameOption.difficulty]);
+    randomCSSColors = Math.floor(Math.random() * gameOption[gameOption.difficulty]);
+
+    words[randomWords].innerHTML = colors[randomColors];
+    words[randomWords].style.cssText += `
+        color: ${CSSColors[randomCSSColors][Math.floor(Math.random() * 3)]};
+    `;
     timerLoop();
 
     function timerLoop(){

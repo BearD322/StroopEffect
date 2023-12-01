@@ -170,7 +170,6 @@ aside{
 }
 .wrapper__cheatSheet>div:active {
     transform: scale(0.95);
-    animation: pulse 0.1s ;
 }
 .wrapper__cheatSheet>.active {
     transform: scale(0.85);
