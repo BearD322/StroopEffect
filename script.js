@@ -101,7 +101,7 @@ function game(){
     optionCheatSheet = document.querySelector(".option__cheatSheet");
 
     document.addEventListener(`keydown`, gameLoop);
-    gameOption.cheatSheetButtons[0].parentElement.addEventListener('mousedown',gameLoop);
+    gameOption.cheatSheetButtons[0].parentElement.addEventListener('mousedown', gameLoop);
    
     
     counterSheet.firstElementChild.innerHTML = gameOption.counter;
@@ -132,6 +132,7 @@ function game(){
                 setTimeout(timerLoop, 1000);
             } else {
                 document.removeEventListener(`keydown`, gameLoop);
+                gameOption.cheatSheetButtons[0].parentElement.removeEventListener("mousedown", gameLoop);
                 gameOption.wrapperScore.classList.remove("hidden");
                 gameOption.wrapperScore.innerHTML = `<span>Ваш счет:</span><span>${gameOption.counter}</span><button type="button" id="retry">Еще раз?</button>`;
                 document.querySelector("#retry").addEventListener("click", retry, {once:true});
@@ -163,6 +164,7 @@ function game(){
             counterSheet.firstElementChild.innerHTML = gameOption.counter;
             if (gameOption.counter < -4 && !gameOption.endless) {
                 event.currentTarget.removeEventListener(`keydown`, gameLoop);
+                gameOption.cheatSheetButtons[0].parentElement.removeEventListener("mousedown", gameLoop);
                 gameOption.stop = true;
             }
 

@@ -15,6 +15,11 @@ body{
     font-size: 24px;
     color: beige;
 }
+@media screen and (max-width: 1224px){
+    body{
+        font-size: 21px;;
+    }
+}
 
 
 /* header */
@@ -30,6 +35,8 @@ header{
     align-items: center;
     justify-content: space-evenly;
 }
+
+
 .header__info p {
     margin: 0;
     padding: 5px;
@@ -99,6 +106,9 @@ p>strong{
     margin: 5px 5px;
     width: 130px;
 }
+.cheatSheet__colors .mobile{
+    display: none;
+}
 .option__cheatSheet{
     background-color: #2d333f9d;
     border-radius: 5px;
@@ -122,6 +132,32 @@ button:active {
     box-shadow: inset 5px 5px 10px #cee3f2, inset -5px -5px 10px #faffff;
 }
 
+@media screen and (max-width: 800px){
+    header{
+       width: 380px;
+    }
+    .option{
+        gap: 20px;
+    }
+    .option__cheatSheet{
+        height: 180px;
+        display: flex;
+        align-items: center;
+    }
+    .cheatSheet__buttons{
+        display: none;
+    }
+    .cheatSheet__colors{
+        height: 100%;
+        display: grid;
+        grid-template-columns:repeat(3,1fr);
+        grid-template-rows: repeat(2,1fr);
+        align-items: center;
+    }
+    .cheatSheet__colors .mobile{
+        display: block;
+    }
+}
 
 /* main */
 
@@ -211,6 +247,30 @@ aside{
         text-shadow: 0 0 5px;
     }
 }
+@media screen and (max-width: 800px){
+    .wrapper__sideBarLeft, .wrapper__sideBarRight{
+        display: none;
+    }
+    .wrapper__main {
+        grid-column: 1/10;
+        padding: 0 10px;
+    }
+    .wrapper__counterSheet {
+        grid-column: 3/8;
+    }
+    .wrapper__cheatSheet {
+        grid-column: 2/9;
+        grid-row: 10/11;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    .wrapper__cheatSheet>div>div:last-child{
+        display: none;
+    }
+    .wrapper__score {
+        grid-column: 1/10;
+    }
+}
 
 /* footer */
 hr{
@@ -236,4 +296,16 @@ footer img{
 
 .hidden{
     display: none;
+}
+@media screen and (max-width: 800px){
+    footer{
+        grid-template-columns: repeat(6,1fr);
+    }
+    footer>p {
+        grid-column: 1/4;
+        text-align: center;
+    }
+    footer>div:first-child{
+        grid-column: 5/6;
+    }
 }
