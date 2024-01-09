@@ -203,6 +203,7 @@ aside{
     border-radius: 5px;
     padding: 10px;
     border: solid 1px #506596;
+    width: 150px;
 }
 .wrapper__cheatSheet>div:active {
     transform: scale(0.95);
